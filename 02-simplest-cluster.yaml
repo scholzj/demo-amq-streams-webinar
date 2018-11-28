@@ -1,0 +1,20 @@
+apiVersion: kafka.strimzi.io/v1alpha1
+kind: Kafka
+metadata:
+  name: my-cluster
+  labels:
+    app: my-kafka-cluster
+spec:
+  kafka:
+    replicas: 1
+    listeners:
+      plain: {}
+    storage:
+      type: persistent-claim
+      size: 100Gi
+  zookeeper:
+    replicas: 1
+    storage:
+      type: persistent-claim
+      size: 100Gi
+

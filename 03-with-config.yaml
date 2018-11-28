@@ -1,0 +1,27 @@
+apiVersion: kafka.strimzi.io/v1alpha1
+kind: Kafka
+metadata:
+  name: my-cluster
+  labels:
+    app: my-kafka-cluster
+spec:
+  kafka:
+    replicas: 1
+    listeners:
+      plain: {}
+    storage:
+      type: persistent-claim
+      size: 100Gi
+    config:
+      # change default segment size
+      log.segment.bytes: 104857600
+      # new log segment every day
+      log.roll.hours: 24
+      # keep log segments 4 days
+      log.retention.hours: 94
+  zookeeper:
+    replicas: 1
+    storage:
+      type: persistent-claim
+      size: 100Gi
+
